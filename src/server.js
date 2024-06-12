@@ -11,8 +11,8 @@ import { initMongoDB } from './db/initMongoDB.js';
 
 const PORT = Number(env('PORT', '3000'));
 
-export const startServer = () => {
-    initMongoDB();
+export const startServer = async() => {
+    await initMongoDB();
     const app = express();
 
     app.use(express.json());
@@ -32,26 +32,26 @@ export const startServer = () => {
         });
     });
 
-    app.use('*', (_req, res, next) => {
-        res.status(404).json({
-            message: 'Not found',
-        });
-    });
+    // app.use('*', (_req, res) => {
+    //     res.status(404).json({
+    //         message: 'Not found',
+    //     });
+    // });
 
-    app.use((err, req, res, next) => {
-        res.status(500).json({
-            message: 'Something went wrong',
-            error: err.message,
-        });
-    });
+    // app.use((err, req, res) => {
+    //     res.status(500).json({
+    //         message: 'Something went wrong',
+    //         error: err.message,
+    //     });
+    // });
 
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+    // app.listen(PORT, () => {
+    //     console.log(`Server is running on port ${PORT}`);
+    // });
 
 
 
-    app.get('/students', async (_req, res) => {
+    app.get('/students', async (req, res) => {
         const students = await getAllStudents();
 
         res.status(200).json({
@@ -67,4 +67,22 @@ export const startServer = () => {
             data: student,
         });
     });
+
+app.use('*', (_req, res) => {
+        res.status(404).json({
+            message: 'Not found',
+        });
+    });
+
+    app.use((err, req, res) => {
+        res.status(500).json({
+            message: 'Something went wrong',
+            error: err.message,
+        });
+    });
+
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+
 };
