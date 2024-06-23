@@ -76,7 +76,12 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 
-import studentsRouter from './routers/students.js';
+// замість цього імпорту і підключення
+// import studentsRouter from './routers/students.js';
+
+// робимо такий імпорт і підключення
+import router from './routers/index.js';
+
 import { env } from './utils/env.js';
 // Імпортуємо middleware
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -104,7 +109,11 @@ export const startServer = () => {
     });
   });
 
-  app.use(studentsRouter);
+// замість цього імпорту і підключення
+  // app.use(studentsRouter);
+
+// робимо такий імпорт і підключення
+  app.use(router);
 
   app.use('*', notFoundHandler);
 

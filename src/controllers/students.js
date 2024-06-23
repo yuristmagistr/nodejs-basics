@@ -18,7 +18,6 @@ import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 
-
 // export const getStudentsController = async (req,res,next,) => {
 // 	try {
 // 	  const students = await getAllStudents();
@@ -136,6 +135,7 @@ export const getStudentByIdController = async (req, res, next) => {
       data: result.student,
     });
   };
+
 
 
 
