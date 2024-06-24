@@ -28,6 +28,9 @@ export const loginUser = async (payload) => {
     if (!isEqual) {
       throw createHttpError(401, 'Unauthorized');
     }
+        // далі ми доповнемо цей контролер
+  };
 
-    // далі ми доповнемо цей контролер
+  export const logoutUser = async (sessionId) => {
+    await SessionsCollection.deleteOne({ _id: sessionId });
   };
