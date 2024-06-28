@@ -19,6 +19,8 @@ import { SessionsCollection } from '../db/models/session.js';
 
 import { logoutUserController } from '../controllers/auth.js';
 
+import { refreshUserSessionController } from '../controllers/auth.js';
+
 const router = Router();
 
 router.post(
@@ -60,5 +62,7 @@ router.post(
   };
 
   router.post('/logout', ctrlWrapper(logoutUserController));
+
+  router.post('/refresh', ctrlWrapper(refreshUserSessionController));
 
 export default router;
